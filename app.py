@@ -75,7 +75,7 @@ def report():
     import base64
     import uuid
     import PIL
-    from PIL import Image
+    from PIL import Image, ExifTags
     import tweepy
     import json
     from boto.s3.connection import S3Connection
@@ -95,6 +95,25 @@ def report():
         f.write(decoded)
 
     im      = Image.open("tmp/%s.png" % filename)
+
+    try:
+        for orientation in ExifTags.TAGS.keys():
+            if ExifTags.TAGS[orientation]=='Orientation':
+                break
+        exif=dict(im._getexif().items())
+
+        if exif[orientation] == 3:
+            im=im.rotate(180, expand=True)
+        elif exif[orientation] == 6:
+            im=im.rotate(270, expand=True)
+        elif exif[orientation] == 8:
+            im=im.rotate(90, expand=True)
+
+    except (AttributeError, KeyError, IndexError):
+        # cases: image don't have getexif
+        pass
+
+
     maxsize = (float(620), float(620))
     size    = (float(im.size[0]), float(im.size[1]))
     scale   = "down"
