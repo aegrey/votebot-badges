@@ -8,7 +8,7 @@ from mongoengine import connect
 from models import Badge
 import random
 
-facebook_image = os.environ.get('SITE_URL')+'/static/images/share_img.jpg'
+facebook_image = os.environ.get('SITE_URL')+'/static/images/share_img2.jpg'
 
 # create flask application
 app = Flask(__name__)
