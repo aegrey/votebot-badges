@@ -357,7 +357,7 @@ var initialize_webcam = function() {
 
 var stopStream = function() {
     if (streamRef.stop) streamRef.stop();
-    else if (streamRef.getTracks) stream.getTracks()[0].stop();
+    else if (streamRef.getTracks) streamRef.getTracks()[0].stop();
     streamRef = null;
 }
 
