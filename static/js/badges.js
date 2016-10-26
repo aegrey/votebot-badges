@@ -101,7 +101,7 @@ var showModal = function(item) {
         tw.textContent = 'Tweet';
         tw.addEventListener('click', function(e) {
             e.preventDefault();
-            window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(TWEET_TEXT+' '+shareLink+' '+(item.photo_display_url ? item.photo_display_url : item.photo_url_s3)));
+            window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(TWEET_TEXT+' '+(item.photo_display_url ? item.photo_display_url : item.photo_url_s3)));
         }, false);
         tweet.appendChild(tw);
 
