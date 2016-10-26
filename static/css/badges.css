@@ -550,11 +550,9 @@ strong { font-weight: bold; }
 }
 @media screen and (max-width: 600px) {
     .overlay .gutter .modal {
-        margin-top: 0px;
+        margin-top: 15px;
     }
-    .modal.photo div.photo {
-        border-radius: 0px;
-    }
+
 }
 
 
