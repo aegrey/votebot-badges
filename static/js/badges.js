@@ -271,8 +271,7 @@ var initialize_webcam = function() {
                     function(e) {
                         clearphoto();
                         if (streamRef) {
-                            if (streamRef.stop) streamRef.stop();
-                            streamRef = null;
+                            stopStream();
                         }
                     },
                     false
@@ -355,6 +354,13 @@ var initialize_webcam = function() {
 
     startup();
 };
+
+var stopStream = function() {
+    if (streamRef.stop) streamRef.stop();
+    else if (streamRef.getTracks) stream.getTracks()[0].stop();
+    streamRef = null;
+}
+
 var reset_photo_elements = function() {
     document.getElementById('startbutton').style.display = 'inline-block';
     document.getElementById('use').style.display = 'none';
@@ -439,8 +445,7 @@ document.getElementById('use').addEventListener('click', function(e) {
     e.preventDefault();
     show_loader();
     if (streamRef) {
-        if (streamRef.stop) streamRef.stop();
-        streamRef = null;
+        stopStream();
     }
     submit_photo_data('webcam_modal');
 }, false);
