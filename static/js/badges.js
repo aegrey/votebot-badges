@@ -105,15 +105,17 @@ var showModal = function(item) {
         }, false);
         tweet.appendChild(tw);
 
-        var sms = document.createElement('a');
-        sms.className = 'share sms';
-        sms.href = '#';
-        sms.textContent = 'Text';
-        sms.addEventListener('click', function(e) {
-            e.preventDefault();
-            shareSMS(shareLink);
-        }, false);
-        tweet.appendChild(sms);
+        if (getMobileOperatingSystem() == 'Android' || getMobileOperatingSystem() == 'iOS') {
+            var sms = document.createElement('a');
+            sms.className = 'share sms';
+            sms.href = '#';
+            sms.textContent = 'Text';
+            sms.addEventListener('click', function(e) {
+                e.preventDefault();
+                shareSMS(shareLink);
+            }, false);
+            tweet.appendChild(sms);
+        }
     }
 
     var close = document.createElement('a');
