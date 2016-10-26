@@ -98,6 +98,9 @@ footer {
     margin-top: 60px;
     padding-bottom: 60px;
 }
+footer .privacy {
+    font-size: 80%;
+}
 footer p {
     margin-bottom: 25px;
 }
@@ -239,6 +242,7 @@ strong { font-weight: bold; }
     text-align: center;
     font-family: "Open Sans";
     font-size: 1.2em;
+    line-height: 1.4em;
     margin-bottom: 15px;
 }
 .modal.photo .tweet:after {
@@ -289,6 +293,9 @@ strong { font-weight: bold; }
 .modal.photo .tweet a.share.join {
     background: #EE3B50;
 }
+.modal.photo .tweet a.share.join:hover {
+    background: #DE2B40;
+}
 .modal.photo .tweet a.share.join::before {
     background: url(../images/camera.png) 0px 3px no-repeat;
     left: 15px;
@@ -299,6 +306,9 @@ strong { font-weight: bold; }
 }
 .modal.photo .tweet a.share.tw {
     background: #51c9f0;
+}
+.modal.photo .tweet a.share.sms {
+    background: #841AFF;
 }
 .modal.photo .tweet a.share.fb::before {
     background-position: -150px 0px;    
@@ -311,6 +321,12 @@ strong { font-weight: bold; }
 }
 .modal.photo .tweet a.share.tw:hover {
     background-color: #41b9e0;
+}
+.modal.photo .tweet a.share.sms::before {
+    background-position: -25px 0px;
+}
+.modal.photo .tweet a.share.sms:hover {
+    background: #740AEF;
 }
 .modal a.close {
     position: absolute;

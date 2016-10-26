@@ -65,19 +65,23 @@ var showModal = function(item) {
         var shareLink = SITE_URL+'/photo/'+item.permalink_slug;
 
         if (item.landing) {
+            var span = document.createElement('span');
+            span.innerHTML = 'Get to the polls! Text <strong>VOTE</strong> to <a href="sms://384387">384-387</a> or visit <a href="https://www.hello.vote/" target="_blank">Hello.Vote</a> for polling place directions and reminders!';
+            tweet.appendChild(span);
+
             var post = document.createElement('a');
             post.className = 'share join';
             post.href = '#';
-            post.textContent = 'Join in';
+            post.textContent = 'I voted!';
             post.addEventListener('click', function(e) {
                 e.preventDefault();
                 close_modal();
-                show_modal("participate_modal");
+                participate();
             }, false);
             tweet.appendChild(post);
         } else {
             var span = document.createElement('span');
-            span.textContent = 'Now, share your photo and @tag your friends to add theirs!';
+            span.textContent = 'Share your photo and @tag your friends to get them to the polls!';
             tweet.appendChild(span);
         }
 
@@ -100,6 +104,16 @@ var showModal = function(item) {
             window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(TWEET_TEXT+' '+shareLink+' '+(item.photo_display_url ? item.photo_display_url : item.photo_url_s3)));
         }, false);
         tweet.appendChild(tw);
+
+        var sms = document.createElement('a');
+        sms.className = 'share sms';
+        sms.href = '#';
+        sms.textContent = 'Text';
+        sms.addEventListener('click', function(e) {
+            e.preventDefault();
+            shareSMS(shareLink);
+        }, false);
+        tweet.appendChild(sms);
     }
 
     var close = document.createElement('a');
@@ -168,7 +182,7 @@ var bind_hide = function(el) {
     );
 }
 
-var close_modals = ['participate_modal', 'webcam_modal', 'manual_modal', 'email_modal', 'call_modal', 'calling_modal'];
+var close_modals = ['participate_modal', 'webcam_modal'];
 
 for (var i=0; i<close_modals.length; i++)
     bind_hide(close_modals[i]);
@@ -370,127 +384,21 @@ var submit_photo_data = function(modal) {
         }
     });
 }
-
-document.querySelector('#email_modal form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    console.log('Form submit');
-
-    var error = false;
-
-    var first_name = document.getElementById('first_name');
-    var email = document.getElementById('email');
-    var address1 = document.getElementById('street_address');
-    var zip = document.getElementById('postcode');
-    var action_comment = document.getElementById('action_comment');
-
-    var add_error = function(el) {
-        console.log('error: ', el);
-        el.className = 'error';
-        error = true;
-    };
-
-    if (!first_name.value) add_error(first_name);
-    if (!email.value) add_error(email);
-    if (!address1.value) add_error(address1);
-    if (!zip.value) add_error(zip);
-    if (!action_comment.value) add_error(action_comment);
-
-    if (error) return alert('Please fill out all fields :)');
-
-    var comment = action_comment.value;
-
-    console.log('comment: ', comment);
-
-    var data = new FormData();
-    data.append('guard', '');
-    data.append('hp_enabled', true);
-    data.append('member[first_name]', first_name.value);
-    data.append('member[email]', email.value);
-    data.append('member[street_address]', address1.value);
-    data.append('member[postcode]', zip.value);
-    data.append('action_comment', comment);
-    data.append('subject', EMAIL_SUBJ);
-    data.append('org', 'fftf');
-    data.append('tag', TAG);
-
-    var url = 'https://queue.fightforthefuture.org/action';
-    hide_modal('email_modal');
-    show_modal('call_modal');
-
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            console.log('response:', xhr.response);
-        }
-    }.bind(this);
-    xhr.open("post", url, true);
-    xhr.send(data);
-    
-}, false);
-
-document.querySelector('#call_modal form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    console.log('Call submit');
-
-    var validate_phone = function(num) {
-        num = num.replace(/\s/g, '').replace(/\(/g, '').replace(/\)/g, '');
-        num = num.replace("+", "").replace(/\-/g, '');
-
-        if (num.charAt(0) == "1")
-            num = num.substr(1);
-
-        if (num.length != 10)
-            return false;
-
-        return num;
-    };
-
-    var phone = document.getElementById('phone').value;
-
-    if (!validate_phone(phone))
-        return alert('Please enter a valid US phone number!');
-
-    var data = new FormData();
-    data.append('campaignId', CALL_TAG);
-    data.append('zipcode', document.getElementById('postcode').value);
-    data.append('userPhone', validate_phone(phone));
-
-    var url = 'https://call-congress.fightforthefuture.org/create';
-
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            console.log('sent!', xhr.response);
-        }
-    }.bind(this);
-    xhr.open("post", url, true);
-    xhr.send(data);
-
-    hide_modal('call_modal');
-    show_modal('calling_modal');
-
-}, false);
-
-
-document.querySelector('#manual_modal button').addEventListener('click', function(e) {
-    e.preventDefault();
-    hide_modal("manual_modal");
-}, false);
-
-document.querySelector('a.post').addEventListener('click', function(e) {
-    e.preventDefault();
-    return document.getElementById('file').click();
+var participate = function() {
     if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
         !navigator.mozGetUserMedia && !navigator.msGetUserMedia)
         document.getElementById('file').click();
     else
         open_webcam_modal();
-}, false);
+}
 
-document.querySelector('#manual').addEventListener('click', function(e) {
+
+
+
+
+document.querySelector('a.post').addEventListener('click', function(e) {
     e.preventDefault();
-    hide_modal("participate_modal");
-    show_modal("manual_modal");
+    participate();
 }, false);
 
 
@@ -563,7 +471,36 @@ if (LOAD_PHOTO) {
     });
 }
 
-if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
-    !navigator.mozGetUserMedia && !navigator.msGetUserMedia)
-    document.getElementById('use_webcam').style.display = 'none'
+/**
+ * Determine the mobile operating system.
+ * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+ *
+ * @returns {String}
+ */
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
+      // Windows Phone must come first because its UA also contains "Android"
+    if (/windows phone/i.test(userAgent)) {
+        return "Windows Phone";
+    }
+
+    if (/android/i.test(userAgent)) {
+        return "Android";
+    }
+
+    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+    }
+
+    return "unknown";
+}
+
+var shareSMS = function(shareLink) {
+
+    if (getMobileOperatingSystem() == 'Android')
+        window.open('sms:?body='+encodeURIComponent('I voted! '+shareLink));
+    else
+        window.open('sms:&body='+encodeURIComponent('I voted! '+shareLink));
+}

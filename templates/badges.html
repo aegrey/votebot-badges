@@ -6,16 +6,16 @@
 <meta charset="utf-8">
 <title>I VOTED!</title>
 <link rel="stylesheet" type="text/css" href="/static/css/badges.css"/>
-<link rel="icon" type="image/png" href="https://s3.amazonaws.com/fftf-cms/static/img/fav.ico">
+<link rel="icon" type="image/png" href="https://www.hello.vote/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="//use.typekit.net/uhq3btm.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
-<meta property="og:title" content="I feel naked."/>
+<meta property="og:title" content="I Voted!"/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="{{ FB_IMAGE_URL }}"/>
-<meta property="og:site_name" content="I feel naked."/>
+<meta property="og:site_name" content="I voted!"/>
 <meta property="fb:admins" content="612663871"/>
-<meta property="og:description" content="I should never, ever have to worry the government is watching my private moments."/>
+<meta property="og:description" content="Get to the polls!"/>
 
 <script type="text/javascript">
     BLACK_AND_WHITE = false;
@@ -26,7 +26,7 @@
     EMAIL_SUBJ = 'Please oppose the USA FREEDOM Act and end mass surveillance.'
     TWEET_TEXT = 'Dear Congress: do you and the NSA get off looking at our private photos? #ifeelnaked';
     TWEET_URL  = 'ifeelnaked.org';
-    SITE_URL   = 'https://www.ifeelnaked.org';
+    SITE_URL   = 'https://i-voted.hello.vote';
 </script>
 
 </head>
@@ -53,7 +53,7 @@
 
 <footer>
     <p>A project of <a href="https://www.hello.vote" target="_blank">HelloVote</a>.</p>
-    <p><a href="https://www.hello.vote" target="_blank">Privacy Policy</a></p>
+    <p><a href="https://www.hello.vote/privacy" target="_blank" class="privacy">Privacy Policy</a></p>
 </footer>
 
 
@@ -105,112 +105,6 @@
                     <source src="/static/audio/photoShutter.mp3" type="audio/mpeg"/>
                     <source src="/static/audio/photoShutter.ogg" type="audio/ogg"/>
                 </audio> 
-            </div>
-        </div>
-    </div>
-</div>
-<div class="overlay invisible" id="manual_modal">
-    <div class="gutter">
-        <div class="modal">
-            <a class="close lite"></a>
-            <div class="explanation">
-                <p>
-                    Post a photo of yourself with no shirt on from the chest up to
-                    <strong>Instagram</strong>, <strong>Twitter</strong> or <strong>Facebook</strong>, with hashtag
-                    <strong class="highlight">#ifeelnaked</strong> and the site <strong class="highlight">ifeelnaked.org</strong> <strong>(not .com)</strong>.
-                    Be sure to tag your friends!
-                </p>
-
-                <div class="example">
-                    here's an example:
-                    <div class="tweet">
-                        <img src="/static/images/tiff.png" class="thumbnail"/>
-                        My <em>#ifeelnaked</em> photo to show how wrong govt surveillance is. Your turn: <em><span>ifeelnaked.org</span></em> <em>@tagyour_friends</em>
-                        <div class="byline">
-                            4:19 PM - 20 Apr 2015
-                        </div>
-                    </div>
-                    <button>OK, I did it!</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<div class="overlay invisible" id="email_modal">
-    <div class="gutter">
-        <div class="modal">
-            <a class="close lite"></a>
-            <div class="explanation">
-                <p>
-                    <strong>Tell Congress: We demand *real* surveillance reform.</strong>
-                    <br/>
-                    Congress needs to overturn all
-                    authorities used to conduct mass surveillance and reign-in the NSA
-                    with meaningful reform.
-                    Enter your info and we'll send your letter to your lawmakers.
-                </p>
-                <div class="example">
-                    <form action="https://queue.fightforthefuture.org/submit" method="post"><input id="first_name" type="text" placeholder="Your name"/><input id="email" type="text" placeholder="Email"/><input id="street_address" type="text" placeholder="Street Address"/><input id="postcode" type="text" placeholder="Zip" class="right"/>
-                    <textarea id="action_comment">Congress has begun the work of reforming mass surveillance in the United States by passing the USA Freedom Act, but significant reform is still needed. Companies should not be granted immunity for sharing customer data with the NSA in violation of their own privacy agreements. The FBI should not be able to use counterterrorism resources to spy on peaceful political activists, as has happened with their surveillance of #BlackLivesMatter protestors, and their operation of a fleet of spy airplanes scooping up cell phone activity in U.S. metropolitan areas. Clearly, your work on surveillance reform is just beginning.
-
-Please overturn Executive Order 12333 and Section 702 of the Foreign Intelligence Surveillance Act. These laws have been abused by the government to engage in the unconstitutional mass surveillance of hundreds of millions of innocent civilians.
-
-Also, three representatives in the House have put forth amendments that would limit mass surveillance. Thomas Massie introduced an amendment that would prevent the government from weakening encryption standards. Ted Poe proposed an amendment to block the government from requiring companies to insert surveillance "backdoors" into their communications software. Jared Polis proposed an amendment to block the DEA from engaging in bulk collection under its subpoena authority. I urge you to support all of these efforts, and to take your own initiative to reign in the surveillance state.</textarea><button type="submit">Email Congress</button></form>
-                    <span class="disclaimer">
-                        We'll deliver your message to Congress.
-                        <a href="https://www.fightforthefuture.org">Fight for the Future</a>
-                        will email you with campaign updates. <a href="https://www.fightforthefuture.org/privacy">Privacy Policy</a>
-                    </span>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<div class="overlay invisible" id="call_modal">
-    <div class="gutter">
-        <div class="modal">
-            <a class="close lite"></a>
-            <div class="explanation">
-                <p>
-                    <strong>Awesome! Now, can you call Congress?</strong><br/>
-                    Enter your phone number and we'll call your phone and connect
-                    you to your reps. We'll tell you what to say on the next step.
-                </p>
-                <div class="example">
-                    <form action="https://call-congress.fightforthefuture.org/submit" method="post">
-                        <input id="phone" class="long right" type="text" placeholder="555-555-5555"/>
-                        <button type="submit">Call Congress</button>
-                    </form>
-                    Can't call? Share this page!<br/>
-                    <a class="social facebook" href="#">Share</a>
-                    <a class="social twitter" href="#">Tweet</a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<div class="overlay invisible" id="calling_modal">
-    <div class="gutter">
-        <div class="modal">
-            <a class="close lite"></a>
-            <div class="explanation">
-                <p>
-                    <strong>We're calling your phone!</strong>
-                    <br/>
-                    Tell Congress to reform mass surveillance by overturning Section 702
-                    of FISA and Executive Order 12333. Tell them to oppose CISA, the
-                    Cyber Intelligence Sharing Act. All of these laws violate our
-                    privacy.
-                </p>
-                <div class="example">
-                    Please share this page!<br/>
-                    <a class="social facebook" href="#">Share</a>
-                    <a class="social twitter" href="#">Tweet</a>
-                </div>
-
             </div>
         </div>
     </div>

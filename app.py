@@ -61,7 +61,7 @@ def photo(permalink_slug):
         if request.values.get('return') == 'json':
             return '{"error": true}'
     
-    return render_template('index.new.html', FB_IMAGE_URL=override_image,
+    return render_template('badges.html', FB_IMAGE_URL=override_image,
                 LOAD_PHOTO=permalink_slug);
 
 
