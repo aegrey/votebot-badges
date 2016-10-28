@@ -315,20 +315,6 @@ var initialize_webcam = function() {
             canvas.height = height;
             context.drawImage(video, 0, 0, width, height);
 
-            if (BLACK_AND_WHITE) {
-                var imgPixels = context.getImageData(0, 0, width, height);
-                for(var y = 0; y < imgPixels.height; y++){
-                    for(var x = 0; x < imgPixels.width; x++){
-                        var i = (y * 4) * imgPixels.width + x * 4;
-                        var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
-                        imgPixels.data[i] = avg;
-                        imgPixels.data[i + 1] = avg;
-                        imgPixels.data[i + 2] = avg;
-                    }
-                }
-                context.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-            }
-
             document.getElementById('shutter').play();
             document.getElementById('flash').style.display = 'block';
             setTimeout(function() {
