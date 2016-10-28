@@ -94,6 +94,11 @@ a {
 a:hover {
     color: #fff;
 }
+p.disclosure {
+    margin-top: 20px;
+    font-size: 80%;
+    opacity: .8;
+}
 footer {
     margin-top: 60px;
     padding-bottom: 60px;
