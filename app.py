@@ -138,8 +138,8 @@ def report():
     im = im.resize(newsize, PIL.Image.ANTIALIAS)
     im = im.crop(crop)
 
-    foreground = Image.open("images/badge.png")
-    im.paste(foreground, (350, 352), foreground)
+    foreground = Image.open("images/badge_with_frame.png")
+    im.paste(foreground, (0, 0), foreground)
 
     im.save("tmp/%s.png" % filename)
 
