@@ -494,6 +494,6 @@ var shareSMS = function(shareLink) {
         window.open('sms:&body='+encodeURIComponent('I voted! '+shareLink));
 }
 
-if (true || window.location.indexOf('selfie') > -1) {
+if (window.location.indexOf('selfie') > -1) {
     document.getElementById('heading').textContent = 'Get your VOTER selfie!';
 }
