@@ -17,6 +17,8 @@ var a_post = document.querySelector('a.post');
 
 var showModal = function(item) {
     // console.log('photo: ', item);
+    hide_modal('webcam_modal')
+    
     var overlay = document.createElement('div');
     overlay.className = 'overlay invisible';
 
