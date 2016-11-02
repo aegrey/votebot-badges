@@ -42,7 +42,8 @@ def index():
     """Render the main site"""
 
     return render_template('badges.html', FB_IMAGE_URL=facebook_image,
-                LOAD_PHOTO='');
+                LOAD_PHOTO='', TITLE=get_title_from_request(),
+                PAGE_TYPE=get_page_type_from_request());
 
 
 @app.route('/photo/<permalink_slug>')
@@ -62,7 +63,8 @@ def photo(permalink_slug):
             return '{"error": true}'
     
     return render_template('badges.html', FB_IMAGE_URL=override_image,
-                LOAD_PHOTO=permalink_slug);
+                LOAD_PHOTO=permalink_slug, TITLE=get_title_from_request(),
+                PAGE_TYPE=get_page_type_from_request());
 
 
 
@@ -138,7 +140,14 @@ def report():
     im = im.resize(newsize, PIL.Image.ANTIALIAS)
     im = im.crop(crop)
 
-    foreground = Image.open("images/badge_with_frame.png")
+    page_type = get_page_type_from_request()
+
+    if page_type == 'VOTED':
+        img_overlay_file = "images/badge_with_frame.png"
+    else:
+        img_overlay_file = "images/voter_badge_with_frame.png"
+
+    foreground = Image.open(img_overlay_file)
     im.paste(foreground, (0, 0), foreground)
 
     im.save("tmp/%s.png" % filename)
@@ -211,6 +220,12 @@ def report():
 
 
     return photo.to_json()
+
+def get_title_from_request():
+    return "I'm Voting!" if "selfie" in request.url else "I VOTED!"
+
+def get_page_type_from_request():
+    return "VOTING" if "selfie" in request.url else "VOTED"
 
 
 if __name__ == '__main__':

@@ -4,15 +4,15 @@
 <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 <script src="//cdn.optimizely.com/js/2872130080.js"></script>
 <meta charset="utf-8">
-<title>I VOTED!</title>
+<title>{{ TITLE }}</title>
 <link rel="stylesheet" type="text/css" href="/static/css/badges.css"/>
 <link rel="icon" type="image/png" href="https://www.hello.vote/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta property="og:title" content="I Voted!"/>
+<meta property="og:title" content="{{ TITLE }}"/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="{{ FB_IMAGE_URL }}"/>
-<meta property="og:site_name" content="I voted!"/>
+<meta property="og:site_name" content="{{ TITLE }}"/>
 <meta property="fb:admins" content="612663871"/>
 <meta property="og:description" content="Get to the polls!"/>
 
@@ -20,6 +20,7 @@
     LOAD_PHOTO = '{{ LOAD_PHOTO }}';
     TWEET_TEXT = 'I voted! Your turn: text VOTE to 384-387 or visit http://hello.vote for polling place directions & reminders!';
     SITE_URL   = 'https://i-voted.hello.vote';
+    PAGE_TYPE  = '{{ PAGE_TYPE }}';
 </script>
 
 </head>
@@ -36,7 +37,7 @@
 
 <img src="/static/images/logo.svg"/>
 
-<h1>Get your I VOTED selfie!</h1>
+<h1 id="heading">Get your I VOTED selfie!</h1>
 
 <h2>Share with your friends and help get them to the polls!</h2>
 
@@ -44,7 +45,12 @@
 
 <p class="disclosure">Your selfie will go live on our <a href="https://twitter.com/hellovote_bot" target="_blank">Wall of Fame!</a></p>
 
-<img class="example" src="/static/images/tiff_badge.png"/>
+{% if PAGE_TYPE == 'VOTED' %}
+    <img class="example" src="/static/images/tiff_badge.png"/>
+{% else %}
+    <img src="/static/images/tiff_voter_badge.png" class="example"/>
+{% endif %}
+
 
 <footer>
     <p>A project of <a href="https://www.hello.vote" target="_blank">HelloVote</a>.</p>
@@ -52,32 +58,6 @@
 </footer>
 
 
-
-
-<div class="overlay invisible" id="participate_modal">
-    <div class="gutter">
-        <div class="modal">
-            <a class="close lite"></a>
-            <div class="explanation">
-                <img src="/static/images/tiff.png" class="example"/>
-                <p>
-                    <strong>Join</strong> <strong class="highlight">#IFEELNAKED</strong>. To protest Congress' invasion of our privacy, take your shirt off and
-                    take a pic. You can snap a photo using this site, or
-                    <a href="#" class="manual">post it yourself</a>
-                    on your favorite social network.
-
-                </p>
-                <div class="example">
-                    
-                    <button id="choose_file" class="gray">Choose a file</button>
-                    <button id="use_webcam">Use my webcam</button>
-                    <button id="manual" class="gray">Use Instagram</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
 <div class="overlay invisible" id="webcam_modal">
     <div class="gutter">
         <div class="modal">

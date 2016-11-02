@@ -184,7 +184,7 @@ var bind_hide = function(el) {
     );
 }
 
-var close_modals = ['participate_modal', 'webcam_modal'];
+var close_modals = ['webcam_modal'];
 
 for (var i=0; i<close_modals.length; i++)
     bind_hide(close_modals[i]);
@@ -354,7 +354,7 @@ var reset_photo_elements = function() {
     document.getElementById('video').style.display = 'block';
     document.getElementById('photo').style.display = 'none';
 }
-var submit_photo_data = function(modal) {
+var submit_photo_data = function() {
     $.ajax({
         type: 'POST',
         url: '/base64',
@@ -365,8 +365,6 @@ var submit_photo_data = function(modal) {
             data = JSON.parse(data);
             if (!data || data.error)
                 return alert('Could not save that photo. Please try again!');
-
-            hide_modal(modal);
 
             console.log('return json: ', data);
             data.share = true;
@@ -399,14 +397,12 @@ document.querySelector('a.post').addEventListener('click', function(e) {
 
 document.querySelector('#use_webcam').addEventListener('click', function(e) {
     e.preventDefault();
-    hide_modal("participate_modal");
     open_webcam_modal();
 }, false);
 
 
 document.querySelector('#choose_file').addEventListener('click', function(e) {
     e.preventDefault();
-    // hide_modal("participate_modal");
     document.getElementById('file').click();
 }, false);
 
@@ -417,7 +413,7 @@ document.querySelector('#file').addEventListener('change', function(e) {
     reader.onload = function(e) {
         photo_data_base64 = e.target.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
         show_loader();
-        submit_photo_data('participate_modal');
+        submit_photo_data();
     }
     reader.readAsDataURL(file);
 }, false);
@@ -496,4 +492,8 @@ var shareSMS = function(shareLink) {
         window.open('sms:?body='+encodeURIComponent('I voted! '+shareLink));
     else
         window.open('sms:&body='+encodeURIComponent('I voted! '+shareLink));
+}
+
+if (true || window.location.indexOf('selfie') > -1) {
+    document.getElementById('heading').textContent = 'Get your VOTER selfie!';
 }
