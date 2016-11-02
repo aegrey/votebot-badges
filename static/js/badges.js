@@ -384,26 +384,9 @@ var participate = function() {
         open_webcam_modal();
 }
 
-
-
-
-
 document.querySelector('a.post').addEventListener('click', function(e) {
     e.preventDefault();
     participate();
-}, false);
-
-
-
-document.querySelector('#use_webcam').addEventListener('click', function(e) {
-    e.preventDefault();
-    open_webcam_modal();
-}, false);
-
-
-document.querySelector('#choose_file').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.getElementById('file').click();
 }, false);
 
 document.querySelector('#file').addEventListener('change', function(e) {
@@ -494,6 +477,6 @@ var shareSMS = function(shareLink) {
         window.open('sms:&body='+encodeURIComponent('I voted! '+shareLink));
 }
 
-if (window.location.indexOf('selfie') > -1) {
+if (window.location.href.indexOf('selfie') > -1) {
     document.getElementById('heading').textContent = 'Get your VOTER selfie!';
 }
