@@ -623,6 +623,9 @@ a.social.twitter {
     background: url(../images/overlay.png) center center no-repeat;
     display: none;
 }
+.video_container #frame.voting {
+    background: url(../images/overlay_voting.png) center center no-repeat;
+}
 
 @-webkit-keyframes flash {
     0% { opacity: 0; }

@@ -65,7 +65,7 @@
             <div class="explanation">
                 <div class="video_container">
                     <video id="video">Video stream not available.</video>
-                    <div id="frame"></div>
+                    <div id="frame" {% if PAGE_TYPE == 'VOTING' %}class="voting"{% endif %}></div>
                 </div>
                 
                 <canvas id="canvas" style="display: none;"></canvas>
