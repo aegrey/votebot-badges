@@ -160,9 +160,9 @@ def report():
             os.environ.get('TWITTER_TOKEN_SECRET'))
 
     api = tweepy.API(auth)
-    r = api.update_with_media("tmp/%s.png"% filename, ("%s Your "
-        "turn: text VOTE to 384-387 or visit hello.vote for polling place "
-        "directions & reminders!") % tweet_string)
+    r = api.update_with_media("tmp/%s.png"% filename, (u"%s Your "
+        u"turn\u2014txt VOTE to 384-387 or visit hello.vote for polling place "
+        u"directions & reminders!") % tweet_string)
 
     item = r._json
 
