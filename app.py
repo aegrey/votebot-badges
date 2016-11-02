@@ -48,7 +48,7 @@ def index():
 def photo(permalink_slug):
     """Render the main site with a special photo for Facebook's scraper"""
 
-    override_image = facebook_image
+    override_image = get_facebook_image()
 
     try:
         photo = Badge.objects.get(permalink_slug=permalink_slug)
