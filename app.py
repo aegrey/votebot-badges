@@ -144,8 +144,10 @@ def report():
 
     if page_type == 'VOTED':
         img_overlay_file = "images/badge_with_frame.png"
+        tweet_string = 'I voted!'
     else:
         img_overlay_file = "images/voter_badge_with_frame.png"
+        tweet_string = 'I\'m voting!'
 
     foreground = Image.open(img_overlay_file)
     im.paste(foreground, (0, 0), foreground)
@@ -158,9 +160,9 @@ def report():
             os.environ.get('TWITTER_TOKEN_SECRET'))
 
     api = tweepy.API(auth)
-    r = api.update_with_media("tmp/%s.png"% filename, ("I voted! Your "
+    r = api.update_with_media("tmp/%s.png"% filename, ("%s Your "
         "turn: text VOTE to 384-387 or visit hello.vote for polling place "
-        "directions & reminders!"))
+        "directions & reminders!") % tweet_string)
 
     item = r._json
 
