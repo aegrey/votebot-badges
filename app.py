@@ -8,8 +8,6 @@ from mongoengine import connect
 from models import Badge
 import random
 
-facebook_image = os.environ.get('SITE_URL')+'/static/images/share_img2.jpg'
-
 # create flask application
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -41,7 +39,7 @@ def fix_ip(ip_address):
 def index():
     """Render the main site"""
 
-    return render_template('badges.html', FB_IMAGE_URL=facebook_image,
+    return render_template('badges.html', FB_IMAGE_URL=get_facebook_image(),
                 LOAD_PHOTO='', TITLE=get_title_from_request(),
                 PAGE_TYPE=get_page_type_from_request());
 
@@ -229,6 +227,11 @@ def get_title_from_request():
 def get_page_type_from_request():
     return "VOTING" if "selfie" in request.url else "VOTED"
 
+def get_facebook_image():
+    if "selfie" in request.url:
+        return os.environ.get('SITE_URL')+'/static/images/share_img_voter.jpg'
+    else:
+        return os.environ.get('SITE_URL')+'/static/images/share_img2.jpg'
 
 if __name__ == '__main__':
     if app.config['DEBUG'] == True:
