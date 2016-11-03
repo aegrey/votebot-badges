@@ -141,10 +141,10 @@ def report():
     page_type = get_page_type_from_request()
 
     if page_type == 'VOTED':
-        img_overlay_file = "images/badge_with_frame.png"
+        img_overlay_file = "images/frame_badge_confetti.png"
         tweet_string = 'I voted!'
     else:
-        img_overlay_file = "images/voter_badge_with_frame.png"
+        img_overlay_file = "images/frame_badge_voter.png"
         tweet_string = 'I\'m voting!'
 
     foreground = Image.open(img_overlay_file)
@@ -229,9 +229,9 @@ def get_page_type_from_request():
 
 def get_facebook_image():
     if "selfie" in request.url:
-        return os.environ.get('SITE_URL')+'/static/images/share_img_voter.jpg'
+        return os.environ.get('SITE_URL')+'/static/images/share_img_voter.png'
     else:
-        return os.environ.get('SITE_URL')+'/static/images/share_img2.jpg'
+        return os.environ.get('SITE_URL')+'/static/images/share_img_ivoted.png'
 
 if __name__ == '__main__':
     if app.config['DEBUG'] == True:
