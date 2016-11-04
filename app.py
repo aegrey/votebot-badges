@@ -142,7 +142,7 @@ def report():
 
     if page_type == 'VOTED':
         img_overlay_file = "images/frame_badge_confetti.png"
-        tweet_string = 'I voted!'
+        tweet_string = '#IVOTED'
     else:
         img_overlay_file = "images/frame_badge_voter.png"
         tweet_string = 'I\'m voting!'
