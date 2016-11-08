@@ -21,9 +21,11 @@
     {% if PAGE_TYPE == 'VOTED' %}
         SITE_URL   = 'https://i-voted.hello.vote';
         TWEET_TEXT = '#IVOTED Your turn: text VOTE to 384-387 or visit http://hello.vote for polling place directions & reminders!';
+        TWEET_TEXT = '#IVOTED Your turn—text VOTE to 384-387 or visit http://hello.vote for your polling location & voter selfie!'
     {% else %}
         SITE_URL   = 'https://selfie.hello.vote';
         TWEET_TEXT = 'I\'m voting! Your turn—txt VOTE to 384-387 or visit http://hello.vote for polling place directions & reminders!';
+        TWEET_TEXT = 'I\'m voting! Your turn—txt VOTE to 384-387 or visit http://hello.vote for your polling location & voter selfie!'
     {% endif %}
     PAGE_TYPE  = '{{ PAGE_TYPE }}';
 </script>
@@ -60,6 +62,7 @@
 <footer>
     <p>A project of <a href="https://www.hello.vote" target="_blank">HelloVote</a>.</p>
     <p><a href="https://www.hello.vote/privacy" target="_blank" class="privacy">Privacy Policy</a></p>
+    <p style="margin-top: 40px; font-size: 70%; opacity: .3" id="user_agent">user_agent</p>
 </footer>
 
 

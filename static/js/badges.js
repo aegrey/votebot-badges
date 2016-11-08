@@ -445,6 +445,9 @@ if (LOAD_PHOTO) {
     });
 }
 
+if (document.getElementById('user_agent'))
+    document.getElementById('user_agent').textContent = navigator.userAgent || navigator.vendor || window.opera;
+
 /**
  * Determine the mobile operating system.
  * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
