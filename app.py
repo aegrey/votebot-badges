@@ -145,7 +145,7 @@ def report():
         tweet_string = '#IVOTED'
     else:
         img_overlay_file = "images/frame_badge_voter.png"
-        tweet_string = 'I\'m voting!'
+        tweet_string = 'Voting!'
 
     foreground = Image.open(img_overlay_file)
     im.paste(foreground, (0, 0), foreground)
