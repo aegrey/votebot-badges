@@ -379,8 +379,7 @@ var submit_photo_data = function() {
     });
 }
 var participate = function() {
-    if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
-        !navigator.mozGetUserMedia && !navigator.msGetUserMedia)
+    if (getMobileOperatingSystem() == 'Android' || getMobileOperatingSystem() == 'iOS')
         document.getElementById('file').click();
     else
         open_webcam_modal();
@@ -448,6 +447,8 @@ if (LOAD_PHOTO) {
 if (document.getElementById('user_agent'))
     document.getElementById('user_agent').textContent = navigator.userAgent || navigator.vendor || window.opera;
 
+// console.log('getMobileOperatingSystem: ', getMobileOperatingSystem())
+
 /**
  * Determine the mobile operating system.
  * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
@@ -455,9 +456,9 @@ if (document.getElementById('user_agent'))
  * @returns {String}
  */
 function getMobileOperatingSystem() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-      // Windows Phone must come first because its UA also contains "Android"
+    // Windows Phone must come first because its UA also contains "Android"
     if (/windows phone/i.test(userAgent)) {
         return "Windows Phone";
     }
